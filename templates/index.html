@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="text-align:center;">
+    {% if user_data %}
+      <h1>Hello {{ user_data.username }}!</h1>
+      <img src="{{ user_data.avatar_url }}" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%;">
+      <p><strong>Email:</strong> {{ user_data.email }}</p>
+      <p><strong>Public Repositories:</strong> {{ user_data.public_repos }}</p>
+      <p><strong>Account Created:</strong> {{ user_data.created_at }}</p>
+      <br/><br/>
+      <a href="{{url_for('logout')}}" class="btn btn-danger">Logout</a>
+    {% else %}
+      <a href="{{url_for('login')}}" class="btn btn-primary">
+        <i class="fa-brands fa-github"></i>
+        <span>Login with GitHub</span>
+      </a>
+      <a href="{{url_for('google_login')}}" class="btn btn-success">
+        <i class="fa-brands fa-google"></i>
+        <span>Login with Google</span>
+      </a>
+    {% endif %}
+  </div>
+{% endblock content %}
